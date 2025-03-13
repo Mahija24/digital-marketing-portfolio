@@ -1,9 +1,10 @@
 import "./globals.css"
+import "./app.css"
 
 export const metadata = {
   title: "DigitalPro - Digital Marketing Agency",
   description: "Professional digital marketing services to help your business grow online.",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({ children }) {
@@ -13,7 +14,3 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
-
-
-
-import './globals.css'

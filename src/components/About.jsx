@@ -64,12 +64,14 @@ export default function About() {
               <div className="absolute -top-4 -left-4 w-24 h-24 bg-accent/10 rounded-lg"></div>
               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary/10 rounded-lg"></div>
               <motion.div className="relative rounded-lg overflow-hidden card-3d" style={{ y }}>
-              <img
-                alt="Our Team"
-                src="/our_agency.jpg"
-                className="w-full h-auto object-cover"
-                style={{ maxHeight: "500px" }} // Controls image height
+              <video
+                src="video_website.mp4"
+                className="w-full h-screen object-cover"
+                autoPlay
+                loop
+                muted
               />
+
 
               </motion.div>
             </div>

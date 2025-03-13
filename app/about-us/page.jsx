@@ -1,22 +1,65 @@
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import AboutHero from "@/components/about-hero"
-import Team from "@/components/team"
-import Values from "@/components/values"
-import History from "@/components/history"
-import Cta from "@/components/cta"
+"use client";
 
-export default function AboutPage() {
+import { useEffect } from "react";
+import { ThemeProvider } from "@/src/components/ThemeProvider";
+
+import Navbar from "@/src/components/Navbar";
+import Hero from "@/src/components/Hero";
+import Clients from "@/src/components/Clients";
+import Services from "@/src/components/Services";
+import Process from "@/components/Process";
+import Portfolio from "@/components/Portfolio";
+import About from "@/components/About";
+import Team from "@/components/Team";
+import Testimonials from "@/components/Testimonials";
+import Stats from "@/src/components/Stats";
+import Brands from "@/src/components/Brands";
+import BlogPreview from "@/src/components/BlogPreview";
+import Faq from "@/components/Faq";
+import Cta from "@/components/Cta";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+
+export default function Home() {
+  // Add smooth scrolling behavior for the entire page
+  useEffect(() => {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute("href").substring(1);
+        if (targetId) {
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        }
+      });
+    });
+  }, []);
+
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <AboutHero />
-      <Values />
-      <History />
-      <Team />
-      <Cta />
-      <Footer />
-    </main>
-  )
+    <ThemeProvider>
+      <main className="min-h-screen">
+        <Navbar />
+        <Hero />
+        <Clients />
+        <Services />
+        <Process />
+        <Stats />
+        <Portfolio />
+        <Brands />
+        <About />
+        <Team />
+        <Testimonials />
+        <BlogPreview />
+        <Faq />
+        <Cta />
+        <Contact />
+        <Footer />
+      </main>
+    </ThemeProvider>
+  );
 }
-

@@ -2,6 +2,9 @@
  * Client-side API functions for interacting with the backend
  */
 
+// API Base URL (change this when deploying)
+const API_BASE_URL = "http://localhost:3000";
+
 /**
  * Submit contact form data to the backend
  * @param {Object} formData - Form data to submit
@@ -9,25 +12,26 @@
  */
 export async function submitContactForm(formData) {
   try {
-    console.log("Submitting contact form:", formData)
+    console.log("Submitting contact form:", formData);
 
-    const response = await fetch("/api/contact", {
+    const response = await fetch(`${API_BASE_URL}/api/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
-    })
+    });
 
     if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.message || "Failed to submit form")
+      const errorData = await response.json();
+      console.error("Contact Form Error:", errorData);
+      throw new Error(errorData.message || "Failed to submit form");
     }
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error submitting contact form:", error)
-    throw error
+    console.error("Error submitting contact form:", error);
+    throw error;
   }
 }
 
@@ -38,23 +42,24 @@ export async function submitContactForm(formData) {
  */
 export async function subscribeToNewsletter(email) {
   try {
-    const response = await fetch("/api/subscribe", {
+    const response = await fetch(`${API_BASE_URL}/api/subscribe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email }),
-    })
+    });
 
     if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.message || "Failed to subscribe")
+      const errorData = await response.json();
+      console.error("Subscription Error:", errorData);
+      throw new Error(errorData.message || "Failed to subscribe");
     }
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error subscribing to newsletter:", error)
-    throw error
+    console.error("Error subscribing to newsletter:", error);
+    throw error;
   }
 }
 
@@ -65,23 +70,24 @@ export async function subscribeToNewsletter(email) {
  */
 export async function requestConsultation(data) {
   try {
-    const response = await fetch("/api/consultation", {
+    const response = await fetch(`${API_BASE_URL}/api/consultation`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    })
+    });
 
     if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.message || "Failed to request consultation")
+      const errorData = await response.json();
+      console.error("Consultation Request Error:", errorData);
+      throw new Error(errorData.message || "Failed to request consultation");
     }
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error requesting consultation:", error)
-    throw error
+    console.error("Error requesting consultation:", error);
+    throw error;
   }
 }
 
@@ -92,18 +98,19 @@ export async function requestConsultation(data) {
  */
 export async function getServices(category = null) {
   try {
-    const url = category ? `/api/services?category=${category}` : "/api/services"
+    const url = category
+      ? `${API_BASE_URL}/api/services?category=${category}`
+      : `${API_BASE_URL}/api/services`;
 
-    const response = await fetch(url)
+    const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error("Failed to fetch services")
+      throw new Error("Failed to fetch services");
     }
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    console.error("Error fetching services:", error)
-    throw error
+    console.error("Error fetching services:", error);
+    throw error;
   }
 }
-
